@@ -1,12 +1,15 @@
 import rootReducer from "./rootReducer";
 import React, { useReducer } from "react";
+import Routes from "./Routes";
 import initialState from "./data.json";
-import ProductsList from "./ProductsList";
 import DispatchContext from "./DispatchContext";
 import ProductContext from "./ProductContext";
 
 function App() {
-  const [state, dispatch] = useReducer(rootReducer, {...initialState, cart:[] });
+  const [state, dispatch] = useReducer(rootReducer, {
+    ...initialState,
+    cart: [],
+  });
   console.log(state.cart.length);
 
   return (
@@ -14,7 +17,7 @@ function App() {
       <h1>{state.cart.length}</h1>
       <DispatchContext.Provider value={dispatch}>
         <ProductContext.Provider value={state}>
-          <ProductsList />
+          <Routes />
         </ProductContext.Provider>
       </DispatchContext.Provider>
     </div>
